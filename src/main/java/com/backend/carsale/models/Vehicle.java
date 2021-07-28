@@ -1,6 +1,7 @@
 package com.backend.carsale.models;
 
 import javax.persistence.*;
+import java.time.ZonedDateTime;
 import java.util.Objects;
 
 @Entity
@@ -48,6 +49,20 @@ public class Vehicle {
 
     @Column
     private String extraInfo;
+
+    @Column
+    private double price;
+
+    @Column
+    private ZonedDateTime addedDate;
+
+    @Column
+    private ZonedDateTime soldDate;
+
+    @PrePersist
+    public void onPersist() {
+        addedDate = ZonedDateTime.now();
+    }
 
     public Long getId() {
         return id;
@@ -159,6 +174,30 @@ public class Vehicle {
 
     public void setExtraInfo(String extraInfo) {
         this.extraInfo = extraInfo;
+    }
+
+    public double getPrice() {
+        return price;
+    }
+
+    public void setPrice(double price) {
+        this.price = price;
+    }
+
+    public ZonedDateTime getAddedDate() {
+        return addedDate;
+    }
+
+    public void setAddedDate(ZonedDateTime addedDate) {
+        this.addedDate = addedDate;
+    }
+
+    public ZonedDateTime getSoldDate() {
+        return soldDate;
+    }
+
+    public void setSoldDate(ZonedDateTime soldDate) {
+        this.soldDate = soldDate;
     }
 
     @Override
