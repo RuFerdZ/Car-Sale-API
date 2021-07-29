@@ -1,6 +1,7 @@
 package com.backend.carsale.models;
 
 import javax.persistence.*;
+import java.time.ZonedDateTime;
 import java.util.Objects;
 
 @Entity
@@ -26,6 +27,9 @@ public class Vehicle {
     private boolean commissioned;
 
     @Column
+    private double commissionValue;
+
+    @Column
     private String bodyType;
 
     @Column
@@ -48,6 +52,30 @@ public class Vehicle {
 
     @Column
     private String extraInfo;
+
+    @Column
+    private double serviceCharges;
+
+    @Column
+    private double buyingPrice;
+
+    @Column
+    private double sellingPrice;
+
+    @Column
+    private ZonedDateTime addedDate;
+
+    @Column
+    private ZonedDateTime soldDate;
+
+    @Lob
+    @Column
+    private byte[] image;
+
+    @PrePersist
+    public void onPersist() {
+        addedDate = ZonedDateTime.now();
+    }
 
     public Long getId() {
         return id;
@@ -159,6 +187,62 @@ public class Vehicle {
 
     public void setExtraInfo(String extraInfo) {
         this.extraInfo = extraInfo;
+    }
+
+    public double getBuyingPrice() {
+        return buyingPrice;
+    }
+
+    public void setBuyingPrice(double buyingPrice) {
+        this.buyingPrice = buyingPrice;
+    }
+
+    public double getSellingPrice() {
+        return sellingPrice;
+    }
+
+    public double getServiceCharges() {
+        return serviceCharges;
+    }
+
+    public void setServiceCharges(double serviceCharges) {
+        this.serviceCharges = serviceCharges;
+    }
+
+    public void setSellingPrice(double sellingPrice) {
+        this.sellingPrice = sellingPrice;
+    }
+
+    public ZonedDateTime getAddedDate() {
+        return addedDate;
+    }
+
+    public void setAddedDate(ZonedDateTime addedDate) {
+        this.addedDate = addedDate;
+    }
+
+    public ZonedDateTime getSoldDate() {
+        return soldDate;
+    }
+
+    public void setSoldDate(ZonedDateTime soldDate) {
+        this.soldDate = soldDate;
+    }
+
+    public byte[] getImage() {
+        return image;
+    }
+
+    public void setImage(byte[] image) {
+        this.image = image;
+    }
+
+    public double getCommissionValue() {
+        return commissionValue;
+    }
+
+    public void setCommissionValue(double commissionValue) {
+        this.commissionValue = commissionValue;
     }
 
     @Override

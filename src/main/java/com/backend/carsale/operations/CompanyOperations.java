@@ -8,9 +8,11 @@ import com.backend.carsale.models.Auth;
 import com.backend.carsale.models.Inquiry;
 import com.backend.carsale.models.Staff;
 import com.backend.carsale.models.Vehicle;
+import lombok.SneakyThrows;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -34,6 +36,17 @@ public class CompanyOperations {
     public ResponseEntity<?> upsertVehicle(Vehicle vehicle){
         vehicleDao.save(vehicle);
         return ResponseEntity.ok("Created");
+    }
+
+    @SneakyThrows
+    public ResponseEntity<?> addImage(long id, MultipartFile image){
+        if (vehicleDao.findById(id).isPresent()){
+            Vehicle vehicle = vehicleDao.findById(id).get();
+            vehicle.setImage(image.getBytes());
+            vehicleDao.save(vehicle);
+            return ResponseEntity.ok("Added Image");
+        }
+        return (ResponseEntity<?>) ResponseEntity.notFound();
     }
 
     public ResponseEntity<?> deleteVehicle(long id){

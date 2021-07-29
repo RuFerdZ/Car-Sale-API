@@ -6,6 +6,7 @@ import com.backend.carsale.operations.CompanyOperations;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
 @RestController
 @CrossOrigin("*")
@@ -17,6 +18,11 @@ public class CompanyAPI {
     @PostMapping(value = "/vehicle/upsert")
     public ResponseEntity<?> addOrUpdateVehicle(@RequestBody Vehicle vehicle){
         return operations.upsertVehicle(vehicle);
+    }
+
+    @PutMapping(value = "/vehicle/{id}/image-upload")
+    public ResponseEntity<?> addImageToVehicle(@PathVariable("id") long id, @RequestBody MultipartFile image){
+        return operations.addImage(id, image);
     }
 
     @DeleteMapping(value = "/vehicle/{id}")
