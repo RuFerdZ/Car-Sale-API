@@ -27,6 +27,9 @@ public class Vehicle {
     private boolean commissioned;
 
     @Column
+    private double commissionValue;
+
+    @Column
     private String bodyType;
 
     @Column
@@ -232,6 +235,14 @@ public class Vehicle {
 
     public void setImage(byte[] image) {
         this.image = image;
+    }
+
+    public double getCommissionValue() {
+        return commissionValue;
+    }
+
+    public void setCommissionValue(double commissionValue) {
+        this.commissionValue = commissionValue;
     }
 
     @Override
