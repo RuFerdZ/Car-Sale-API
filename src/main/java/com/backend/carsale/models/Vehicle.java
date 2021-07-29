@@ -51,13 +51,23 @@ public class Vehicle {
     private String extraInfo;
 
     @Column
-    private double price;
+    private double serviceCharges;
+
+    @Column
+    private double buyingPrice;
+
+    @Column
+    private double sellingPrice;
 
     @Column
     private ZonedDateTime addedDate;
 
     @Column
     private ZonedDateTime soldDate;
+
+    @Lob
+    @Column
+    private byte[] image;
 
     @PrePersist
     public void onPersist() {
@@ -176,12 +186,28 @@ public class Vehicle {
         this.extraInfo = extraInfo;
     }
 
-    public double getPrice() {
-        return price;
+    public double getBuyingPrice() {
+        return buyingPrice;
     }
 
-    public void setPrice(double price) {
-        this.price = price;
+    public void setBuyingPrice(double buyingPrice) {
+        this.buyingPrice = buyingPrice;
+    }
+
+    public double getSellingPrice() {
+        return sellingPrice;
+    }
+
+    public double getServiceCharges() {
+        return serviceCharges;
+    }
+
+    public void setServiceCharges(double serviceCharges) {
+        this.serviceCharges = serviceCharges;
+    }
+
+    public void setSellingPrice(double sellingPrice) {
+        this.sellingPrice = sellingPrice;
     }
 
     public ZonedDateTime getAddedDate() {
@@ -198,6 +224,14 @@ public class Vehicle {
 
     public void setSoldDate(ZonedDateTime soldDate) {
         this.soldDate = soldDate;
+    }
+
+    public byte[] getImage() {
+        return image;
+    }
+
+    public void setImage(byte[] image) {
+        this.image = image;
     }
 
     @Override
