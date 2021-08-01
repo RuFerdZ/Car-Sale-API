@@ -63,6 +63,9 @@ public class Vehicle {
     private double sellingPrice;
 
     @Column
+    private double soldPrice;
+
+    @Column
     private ZonedDateTime addedDate;
 
     @Column
@@ -199,6 +202,14 @@ public class Vehicle {
 
     public double getSellingPrice() {
         return sellingPrice;
+    }
+
+    public double getSoldPrice() {
+        return soldPrice;
+    }
+
+    public void setSoldPrice(double soldPrice) {
+        this.soldPrice = soldPrice;
     }
 
     public double getServiceCharges() {
